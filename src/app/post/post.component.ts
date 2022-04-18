@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../post.model';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  @Input() post?: Post;
+  @Input() index: number=0;
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    console.log(this.post);
+    console.log(this.index);
   }
 
+  onDelete(){
+    console.log("Delte exetd");
+    this.postService.deletePost(this.index);
+  }
 }
