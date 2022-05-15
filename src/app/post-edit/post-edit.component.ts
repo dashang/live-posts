@@ -57,11 +57,17 @@ let imagePath = '';
       description,
       imagePath,
       'test@st.com',
-      new Date()
+      new Date(),
+      0
     );
 
     // Calling service
-    this.postService.addPost(post);
+    if(this.editMode){
+      this.postService.updatePost(this.index,post);
+    }else{
+      this.postService.addPost(post);
+    }
+    
 
     // Navigate to post-list
     this.router.navigate(['/post-list']);
